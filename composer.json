@@ -1,0 +1,24 @@
+{
+    "name": "gfl/repository",
+    "description": "package for repository",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tuấn Anh",
+            "email": "anh.pt@globalflow.com.vn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Repository\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GFL\\Repository\\RepositoryServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<?php
+
+namespace $CLASS_NAMESPACE$;
+
+use App\Repositories\Contracts\$NAME$RepositoryInterface;
+
+class $CLASS$ implements ProductRepositoryInterface
+{
+    public function index() {
+
+    }
+
+    public function show($id) {
+
+    }
+
+    public function update($id) {
+
+    }
+
+    public function store($id) {
+
+    }
+
+    public function destroy($id) {
+
+    }
+}

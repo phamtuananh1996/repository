@@ -1,0 +1,3 @@
+- create respository : php artisan gfl:repository {nameRepository}
+- create respository Interface : php artisan gfl:respository-contract {nameRepository}
+- create respository eloquent : php artisan gfl:respository-eloquent {nameRepository}
