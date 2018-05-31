@@ -12,19 +12,19 @@ class CreateRepositoryEloquents extends GeneratorCommand
      *
      * @var string
      */
-    protected $argumentName = 'respository';
+    protected $argumentName = 'repository';
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'gfl:respository-eloquent';
+    protected $name = 'gfl:repository-eloquent';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate new restful respository for the specified .';
+    protected $description = 'Generate new restful repository for the specified .';
     /**
      * Get controller name.
      *
@@ -40,8 +40,7 @@ class CreateRepositoryEloquents extends GeneratorCommand
     protected function getTemplateContents()
     {
         return (new Stub($this->getStubName(), [
-            'NAME' => studly_case($this->argument('respository')),
-            'NAMESPACE' => "App\Repositories\Contract",
+            'NAME' => str_replace('/', '\\', studly_case($this->argument('repository'))),
             'CLASS_NAMESPACE' => $this->getClassNamespace(),
             'CLASS' => class_basename($this->getRepositoryName()),
         ]))->render();
@@ -54,7 +53,7 @@ class CreateRepositoryEloquents extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['respository', InputArgument::REQUIRED, 'The name of the respository class.'],
+            ['repository', InputArgument::REQUIRED, 'The name of the repository class.'],
         ];
     }
     /**
@@ -63,8 +62,8 @@ class CreateRepositoryEloquents extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['model', 'm', InputOption::VALUE_NONE, 'Generate a model respository', null],
-            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain respository', null],
+            ['model', 'm', InputOption::VALUE_NONE, 'Generate a model repository', null],
+            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain repository', null],
         ];
     }
     /**
@@ -72,9 +71,9 @@ class CreateRepositoryEloquents extends GeneratorCommand
      */
     protected function getRepositoryName()
     {
-        $repository = studly_case($this->argument('respository'));
-        if (str_contains(strtolower($repository), 'RespositoryInterface') === false) {
-            $repository .= 'Respository';
+        $repository = studly_case($this->argument('repository'));
+        if (str_contains(strtolower($repository), 'repositoryInterface') === false) {
+            $repository .= 'Repository';
         }
         return $repository;
     }

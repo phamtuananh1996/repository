@@ -11,27 +11,27 @@ class CreateRepository extends Command
 
   public function handle()
     {
-        $this->call('gfl:respository-eloquent', ['respository' => studly_case($this->argument('respository'))]);
-        $this->call('gfl:respository-contract', ['respository' => studly_case($this->argument('respository'))]);
+        $this->call('gfl:repository-eloquent', ['repository' => studly_case($this->argument('repository'))]);
+        $this->call('gfl:repository-contract', ['repository' => studly_case($this->argument('repository'))]);
     }
     /**
      * The name of argument being used.
      *
      * @var string
      */
-    protected $argumentName = 'respository';
+    protected $argumentName = 'repository';
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'gfl:respository';
+    protected $name = 'gfl:repository';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate new restful respository for the specified .';
+    protected $description = 'Generate new restful repository for the specified .';
    
     /**
      * Get the console command arguments.
@@ -41,7 +41,7 @@ class CreateRepository extends Command
     protected function getArguments()
     {
         return [
-            ['respository', InputArgument::REQUIRED, 'The name of the respository class.'],
+            ['repository', InputArgument::REQUIRED, 'The name of the repository class.'],
         ];
     }
     /**
@@ -50,8 +50,8 @@ class CreateRepository extends Command
     protected function getOptions()
     {
         return [
-            ['model', 'm', InputOption::VALUE_NONE, 'Generate a model respository', null],
-            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain respository', null],
+            ['model', 'm', InputOption::VALUE_NONE, 'Generate a model repository', null],
+            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain repository', null],
         ];
     }
     
