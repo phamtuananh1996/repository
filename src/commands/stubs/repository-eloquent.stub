@@ -1,28 +1,102 @@
 <?php
 
-namespace $CLASS_NAMESPACE$;
+namespace $NAMESPACE$;
 
-use App\Repositories\Contracts\$NAME$RepositoryInterface;
+use App\Repositories\Contracts\RepositoryInterface;
 
-class $CLASS$ implements ProductRepositoryInterface
+abstract class EloquentRepository implements RepositoryInterface
 {
-    public function index() {
+    /**
+     * @var \Illuminate\Datatbase\Eloquent\Model
+     */
+    protected $model;
 
+    public function __construct() {
+        $this->setModel();
     }
 
+    /**
+     * Get the model
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:08:25+0700
+     * @return      Void
+     */
+    abstract public function getModel();
+
+    /**
+     * Set Model
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:08:59+0700
+     */
+    public function setModel() {
+        $this->model = app()->make(
+            $this->getModel()
+        );
+    }
+
+    /**
+     * Get all data
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:13:30+0700
+     * @return      Void
+     */
+    public function getAll($per_page) {
+        return $this->model->paginate($per_page);
+    }
+
+    /**
+     * Create a item
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:14:22+0700
+     * @param       Array $data The data input
+     * @return      Void
+     */
+    public function store($data) {
+        return $this->model->storeItem($data);
+    }
+
+    /**
+     * Show view
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:15:44+0700
+     * @param       Array $id The id to find
+     * @return      Void
+     */
     public function show($id) {
-
+        return $this->model->find($id);
     }
 
-    public function update($id) {
-
+    /**
+     * Get data with conditions
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:16:16+0700
+     * @param       Array $conditions The conditions
+     * @return      Void
+     */
+    public function where($conditions) {
+        return $this->model->where($conditions);
     }
 
-    public function store($id) {
-
+    /**
+     * Update a item
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:17:01+0700
+     * @param       object $item
+     * @param       Array $data The data input
+     * @return      Void
+     */
+    public function update($item, $data) {
+        return $item->updateItem($data);
     }
 
-    public function destroy($id) {
-
+    /**
+     * delete item
+     * @Author      duy.nv <duy.nv@globalflow.com.vn>
+     * @Anotherdate 2018-06-13T15:17:42+0700
+     * @param       Array $ids The array id
+     * @return      Void
+     */
+    public function destroy($ids) {
+        return $this->model->deleteItems($ids);
     }
 }

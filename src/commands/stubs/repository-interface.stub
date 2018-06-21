@@ -1,12 +1,60 @@
 <?php
 
-namespace $CLASS_NAMESPACE$;
+namespace $NAMESPACE$;
 
 interface $CLASS$
 {
-    public function index();
-    public function show($id);
-    public function update($id);
-    public function store($id);
-    public function destroy($id);
+	/**
+	 * Get all
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T14:53:04+0700
+	 * @return      void
+	 */
+	public function getAll($per_page);
+
+	/**
+	 * Create a item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T14:53:43+0700
+	 * @param       Array $data The data input
+	 * @return      Resource
+	 */
+	public function store($data);
+
+	/**
+	 * Show item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T14:54:28+0700
+	 * @param       $id The id to find
+	 * @return      void
+	 */
+	public function show($id);
+
+	/**
+	 * Get with conditions
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T14:58:34+0700
+	 * @param       Array $conditions the conditions
+	 * @return      void
+	 */
+	public function where($conditions);
+
+	/**
+	 * Update a item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T14:59:47+0700
+	 * @param       String $id The id to find
+	 * @param       Array $data The data
+	 * @return      void
+	 */
+	public function update($item, $data);
+
+	/**
+	 * Delete item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:01:29+0700
+	 * @param       Request $ids The data id
+	 * @return      void
+	 */
+	public function destroy($ids);
 }

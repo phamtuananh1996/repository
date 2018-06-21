@@ -1,0 +1,19 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Models\$MODEL$;
+use App\Repositories\Contracts\$CLASS$;
+
+class $CLASS$ extends EloquentRepository implements $NAME$Interface{
+
+	/**
+	 * Get model
+	 * @Author      Author
+	 * @Anotherdate 
+	 * @return      String
+	 */
+	public function getModel() {
+		return $MODEL$::class;
+	}
+}
