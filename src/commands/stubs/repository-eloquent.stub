@@ -76,7 +76,17 @@ abstract class EloquentRepository implements RepositoryInterface
     public function where($conditions) {
         return $this->model->where($conditions);
     }
-
+    
+    /**
+	 * Get all  || Search
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-07-24T14:56:16+0700
+	 * @param       array $data
+	 * @param       int $per_page
+	 * @return      Void
+	 */
+	public function whereItems($data, $per_page);
+    
     /**
      * Update a item
      * @Author      duy.nv <duy.nv@globalflow.com.vn>
@@ -99,4 +109,14 @@ abstract class EloquentRepository implements RepositoryInterface
     public function destroy($ids) {
         return $this->model->deleteItems($ids);
     }
+    
+    
+	/**
+	 * Change status
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-22T08:53:00+0700
+	 * @param       string $status
+	 * @return      void
+	 */
+	public function changeStatus($item, $status);
 }
