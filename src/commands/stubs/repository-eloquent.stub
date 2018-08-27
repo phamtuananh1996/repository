@@ -4,99 +4,121 @@ namespace $NAMESPACE$;
 
 use App\Repositories\Contracts\RepositoryInterface;
 
-abstract class EloquentRepository implements RepositoryInterface
-{
-    /**
-     * @var \Illuminate\Datatbase\Eloquent\Model
-     */
-    protected $model;
+abstract class EloquentRepository implements RepositoryInterface {
+	/**
+	 * @var \Illuminate\Datatbase\Eloquent\Model
+	 */
+	protected $model;
 
-    public function __construct() {
-        $this->setModel();
-    }
+	public function __construct() {
+		$this->setModel();
+	}
 
-    /**
-     * Get the model
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:08:25+0700
-     * @return      Void
-     */
-    abstract public function getModel();
+	/**
+	 * Get the model
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:08:25+0700
+	 * @return      Void
+	 */
+	abstract public function getModel();
 
-    /**
-     * Set Model
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:08:59+0700
-     */
-    public function setModel() {
-        $this->model = app()->make(
-            $this->getModel()
-        );
-    }
+	/**
+	 * Set Model
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:08:59+0700
+	 */
+	public function setModel() {
+		$this->model = app()->make(
+			$this->getModel()
+		);
+	}
 
-    /**
-     * Get all data
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:13:30+0700
-     * @return      Void
-     */
-    public function getAll($per_page) {
-        return $this->model->paginate($per_page);
-    }
+	/**
+	 * Get all data
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:13:30+0700
+	 * @return      Void
+	 */
+	public function getAll($per_page) {
+		return $this->model->paginate($per_page);
+	}
 
-    /**
-     * Create a item
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:14:22+0700
-     * @param       Array $data The data input
-     * @return      Void
-     */
-    public function store($data) {
-        return $this->model->storeItem($data);
-    }
+	/**
+	 * Create a item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:14:22+0700
+	 * @param       Array $data The data input
+	 * @return      Void
+	 */
+	public function store($data) {
+		return $this->model->storeItem($data);
+	}
 
-    /**
-     * Show view
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:15:44+0700
-     * @param       Array $id The id to find
-     * @return      Void
-     */
-    public function show($id) {
-        return $this->model->find($id);
-    }
+	/**
+	 * Show view
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:15:44+0700
+	 * @param       Array $id The id to find
+	 * @return      Void
+	 */
+	public function show($id) {
+		return $this->model->find($id);
+	}
 
-    /**
-     * Get data with conditions
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:16:16+0700
-     * @param       Array $conditions The conditions
-     * @return      Void
-     */
-    public function where($conditions) {
-        return $this->model->where($conditions);
-    }
+	/**
+	 * Get data with conditions
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:16:16+0700
+	 * @param       Array $conditions The conditions
+	 * @return      Void
+	 */
+	public function where($name_condition, $condition, $value_condition) {
+		return $this->model->whereItems($name_condition, $condition, $value_condition);
+	}
 
-    /**
-     * Update a item
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:17:01+0700
-     * @param       object $item
-     * @param       Array $data The data input
-     * @return      Void
-     */
-    public function update($item, $data) {
-        return $item->updateItem($data);
-    }
+	/**
+	 * Get all || Search
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-07-24T14:55:05+0700
+	 * @param       array $data
+	 * @param       int $per_page
+	 * @return      Void
+	 */
+	public function whereItems($data, $per_page) {
+		return $this->model->whereItems($data, $per_page);
+	}
 
-    /**
-     * delete item
-     * @Author      duy.nv <duy.nv@globalflow.com.vn>
-     * @Anotherdate 2018-06-13T15:17:42+0700
-     * @param       Array $ids The array id
-     * @return      Void
-     */
-    public function destroy($ids) {
-        return $this->model->deleteItems($ids);
-    }
+	/**
+	 * Update a item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:17:01+0700
+	 * @param       object $item
+	 * @param       Array $data The data input
+	 * @return      Void
+	 */
+	public function update($item, $data) {
+		return $item->updateItem($data);
+	}
+
+	/**
+	 * delete item
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-13T15:17:42+0700
+	 * @param       Array $ids The array id
+	 * @return      Void
+	 */
+	public function destroy($ids) {
+		return $this->model->deleteItems($ids);
+	}
+
+	/**
+	 * change status
+	 * @Author      duy.nv <duy.nv@globalflow.com.vn>
+	 * @Anotherdate 2018-06-22T08:53:41+0700
+	 * @param       string $status
+	 * @return      object
+	 */
+	public function changeStatus($item, $status) {
+		return $item->changeStatus($status);
+	}
 }
