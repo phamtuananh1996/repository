@@ -3,7 +3,7 @@
 namespace $NAMESPACE$;
 
 use App\Models\$MODEL$;
-use App\Repositories\Contracts\$CLASS$;
+use App\Repositories\Contracts\$NAME$Interface;
 
 class $CLASS$ extends EloquentRepository implements $NAME$Interface{
 
